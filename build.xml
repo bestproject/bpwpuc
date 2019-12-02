@@ -7,15 +7,18 @@
     <php expression="date('Y')" returnProperty="build.year"/>
     
     <target name="build:bp_wpuc">
-        <echo msg="Creating module directory" />
-        <mkdir dir="./.build/bp_wpuc" />
-        
-        <echo msg="Building module installer" />
-        <copy todir="./.build/bp_wpuc" >
+        <echo msg="Creating module directory"/>
+        <mkdir dir="./.build/bp_wpuc"/>
+
+        <echo msg="Building assets with Webpack"/>
+        <exec command="npm run build" passthru="true" checkreturn="true"/>
+
+        <echo msg="Building module installer"/>
+        <copy todir="./.build/bp_wpuc">
             <fileset dir="./wp-content/plugins/bp_wpuc">
-                <include name="**/*" />
-                <exclude name=".dev/**" />
-                <exclude name=".dev/" />
+                <include name="**/*"/>
+                <exclude name=".dev/**"/>
+                <exclude name=".dev/"/>
             </fileset>
             <filterchain>
                 <replacetokens begintoken="${" endtoken="}">
@@ -35,7 +38,7 @@
         </copy>
 
         <echo msg="Creating plugin zipfile." />
-        <zip destfile="./.build/bp_wpuc_v${build.version}.zip" basedir="./.build/bp_wpuc"/>
+        <zip destfile="./.build/bp_wpuc.zip" basedir="./.build/bp_wpuc"/>
     </target>
     
     <target name="build">

@@ -1,8 +1,15 @@
 /**
+.build
+.build/**
 !/wp-content/
+!.dev
+!.dev/**
 /wp-content/*
 !/wp-content/plugins/
-!/wp-content/plugins/**
+!/wp-content/plugins/bp_wpuc
+!/wp-content/plugins/bp_wpuc/**
+!/wp-content/plugins/bp_wpuc/themes
+/wp-content/plugins/bp_wpuc/themes/default/assets
 
 !/LICENSE
 !/README.md
@@ -15,3 +22,4 @@
 
 !PHP File Header.php
 !build.properties
+!webpack.config.js
