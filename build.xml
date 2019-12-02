@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BP WP Under Construction" default="build:clean" basedir="." description="Plugin build task">
+    
+    <property file="./build.properties" />
+    
+    <php expression="date('F Y')" returnProperty="build.date"/>
+    <php expression="date('Y')" returnProperty="build.year"/>
+    
+    <target name="build:bp_wpuc">
+        <echo msg="Creating module directory" />
+        <mkdir dir="./.build/bp_wpuc" />
+        
+        <echo msg="Building module installer" />
+        <copy todir="./.build/bp_wpuc" >
+            <fileset dir="./wp-content/plugins/bp_wpuc">
+                <include name="**/*" />
+                <exclude name=".dev/**" />
+                <exclude name=".dev/" />
+            </fileset>
+            <filterchain>
+                <replacetokens begintoken="${" endtoken="}">
+                    <token key="build.date" value="${build.date}" />
+                    <token key="build.year" value="${build.year}" />
+                    <token key="copyrights" value="${copyrights}" />
+                    <token key="license.name" value="${license.name}" />
+                    <token key="license.url" value="${license.url}" />
+                    <token key="build.version" value="${build.version}" />
+                    <token key="package" value="${package}" />
+                    <token key="subpackage" value="${subpackage}" />
+                    <token key="author.url" value="${author.url}" />
+                    <token key="author.name" value="${author.name}" />
+                    <token key="author.email" value="${author.email}" />
+                </replacetokens>
+            </filterchain>
+        </copy>
+
+        <echo msg="Creating plugin zipfile." />
+        <zip destfile="./.build/bp_wpuc_v${build.version}.zip" basedir="./.build/bp_wpuc"/>
+    </target>
+    
+    <target name="build">
+        <echo msg="Creating build directory ./.build" />
+        <mkdir dir="./.build" />
+        
+        <echo msg="Building each of the extensions" />
+        <phingcall target="build:bp_wpuc"></phingcall>
+        
+    </target>
+
+    <target name="clean">
+        <echo msg="Removing build directory ./.build if exists" />
+        <delete dir="./.build" includeemptydirs="true"/>
+    </target>
+    
+    <target name="build:clean">
+        <echo msg="Creating a clean build." />
+        <phingcall target="clean"></phingcall>
+        <phingcall target="build"></phingcall>
+    </target>
+
+</project>

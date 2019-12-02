@@ -1,0 +1,17 @@
+/**
+!/wp-content/
+/wp-content/*
+!/wp-content/plugins/
+!/wp-content/plugins/**
+
+!/LICENSE
+!/README.md
+!/build.xml
+!/composer.json
+!/composer.lock
+!/.gitignore
+!/package.json
+!/package-lock.json
+
+!PHP File Header.php
+!build.properties
