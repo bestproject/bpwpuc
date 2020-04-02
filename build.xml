@@ -38,7 +38,7 @@
         </copy>
 
         <echo msg="Creating plugin zipfile." />
-        <zip destfile="./.build/bp_wpuc_${build.version}.zip" basedir="./.build/bp_wpuc"/>
+        <zip destfile="./.build/bp_wpuc_${build.version}.zip" basedir="./.build"/>
     </target>
     
     <target name="build">
