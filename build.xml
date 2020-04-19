@@ -11,7 +11,7 @@
         <mkdir dir="./.build/bp_wpuc"/>
 
         <echo msg="Building assets with Webpack"/>
-        <exec command="npm run build" passthru="true" checkreturn="true"/>
+        <exec command="npm run build" checkreturn="true"/>
 
         <echo msg="Building module installer"/>
         <copy todir="./.build/bp_wpuc">
