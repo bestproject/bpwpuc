@@ -9,6 +9,7 @@
  * Text Domain: bpwpuc
  * Domain Path: /languages
  * Requires at least: 6.0
+ * Requires PHP:      7.3
  */
 
 /**
